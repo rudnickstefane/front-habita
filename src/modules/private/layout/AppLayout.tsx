@@ -10,14 +10,15 @@ import {
 import { useAuthStore } from "@sr/store/useAuthStore";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
-const menuItems = [
-  { label: "Dashboard", to: "/" },
-  { label: "Corretores", to: "/corretores" },
-];
-
 export default function AppLayout() {
   const navigate = useNavigate();
   const { corretor, logout } = useAuthStore();
+  const isAdmin = corretor?.perfil === "ADMIN";
+
+  const menuItems = [
+    { label: "Dashboard", to: "/" },
+    ...(isAdmin ? [{ label: "Corretores", to: "/corretores" }] : []),
+  ];
 
   function handleLogout() {
     logout();
@@ -56,8 +57,11 @@ export default function AppLayout() {
         </List>
 
         <Divider className="!border-white/10 mb-4" />
-        <Typography variant="body2" className="text-white/70 mb-3">
+        <Typography variant="body2" className="text-white/70 mb-1">
           {corretor?.nome}
+        </Typography>
+        <Typography variant="caption" className="text-white/50 mb-3">
+          {isAdmin ? "Administrador" : "Corretor"}
         </Typography>
         <Button
           variant="outlined"

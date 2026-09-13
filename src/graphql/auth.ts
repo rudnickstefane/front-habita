@@ -8,6 +8,7 @@ export const LOGIN_MUTATION = gql`
         id
         nome
         email
+        perfil
       }
     }
   }

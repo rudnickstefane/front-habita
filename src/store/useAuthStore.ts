@@ -1,10 +1,13 @@
 import { storage } from "@sr/common/storage";
 import { create } from "zustand";
 
+export type PerfilCorretor = "ADMIN" | "CORRETOR";
+
 export type CorretorSession = {
   id: number;
   nome: string;
   email: string;
+  perfil: PerfilCorretor;
 };
 
 type AuthState = {

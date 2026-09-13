@@ -25,6 +25,7 @@ type Corretor = {
   id: number;
   nome: string;
   email: string;
+  perfil: "ADMIN" | "CORRETOR";
   createdAt: string;
 };
 
@@ -162,19 +163,23 @@ export default function Corretores() {
               <TableRow>
                 <TableCell>Nome</TableCell>
                 <TableCell>E-mail</TableCell>
+                <TableCell>Perfil</TableCell>
                 <TableCell>Cadastro</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {corretores.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={3}>Nenhum corretor cadastrado.</TableCell>
+                  <TableCell colSpan={4}>Nenhum corretor cadastrado.</TableCell>
                 </TableRow>
               ) : (
                 corretores.map((corretor) => (
                   <TableRow key={corretor.id}>
                     <TableCell>{corretor.nome}</TableCell>
                     <TableCell>{corretor.email}</TableCell>
+                    <TableCell>
+                      {corretor.perfil === "ADMIN" ? "Administrador" : "Corretor"}
+                    </TableCell>
                     <TableCell>
                       {new Date(corretor.createdAt).toLocaleDateString("pt-BR")}
                     </TableCell>

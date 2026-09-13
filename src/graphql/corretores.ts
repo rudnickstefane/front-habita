@@ -6,6 +6,7 @@ export const CORRETORES_QUERY = gql`
       id
       nome
       email
+      perfil
       createdAt
     }
   }
@@ -17,6 +18,7 @@ export const CRIAR_CORRETOR_MUTATION = gql`
       id
       nome
       email
+      perfil
       createdAt
     }
   }

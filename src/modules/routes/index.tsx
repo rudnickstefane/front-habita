@@ -11,6 +11,11 @@ function PrivateRoute({ children }: { children: ReactNode }) {
   return token ? children : <Navigate to="/login" replace />;
 }
 
+function AdminRoute({ children }: { children: ReactNode }) {
+  const perfil = useAuthStore((state) => state.corretor?.perfil);
+  return perfil === "ADMIN" ? children : <Navigate to="/" replace />;
+}
+
 export default function AppRoutes() {
   return (
     <Routes>
@@ -23,7 +28,14 @@ export default function AppRoutes() {
         }
       >
         <Route path="/" element={<Dashboard />} />
-        <Route path="/corretores" element={<Corretores />} />
+        <Route
+          path="/corretores"
+          element={
+            <AdminRoute>
+              <Corretores />
+            </AdminRoute>
+          }
+        />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
