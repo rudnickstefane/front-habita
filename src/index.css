@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --habita-ink: #16332b;
+  --habita-teal: #1f6f5b;
+  --habita-teal-dark: #155445;
+  --habita-sand: #f6f1ea;
+  --habita-cream: #fffaf4;
+  --habita-line: #e4d9cc;
+  --font-primary: "Manrope", "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  background: var(--habita-sand);
+  color: var(--habita-ink);
+  font-family: var(--font-primary);
+}
+
+.btn-primary {
+  background-color: var(--habita-teal) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--habita-teal-dark) !important;
+}
