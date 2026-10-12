@@ -1,6 +1,7 @@
 import AppLayout from "@sr/modules/private/layout/AppLayout";
 import Corretores from "@sr/modules/private/Corretores";
 import Dashboard from "@sr/modules/private/Dashboard";
+import Proprietarios from "@sr/modules/private/Proprietarios";
 import Login from "@sr/modules/public/Login";
 import { useAuthStore } from "@sr/store/useAuthStore";
 import type { ReactNode } from "react";
@@ -28,6 +29,7 @@ export default function AppRoutes() {
         }
       >
         <Route path="/" element={<Dashboard />} />
+        <Route path="/proprietarios" element={<Proprietarios />} />
         <Route
           path="/corretores"
           element={

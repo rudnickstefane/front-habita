@@ -17,6 +17,7 @@ export default function AppLayout() {
 
   const menuItems = [
     { label: "Dashboard", to: "/" },
+    { label: "Proprietários", to: "/proprietarios" },
     ...(isAdmin ? [{ label: "Corretores", to: "/corretores" }] : []),
   ];
 

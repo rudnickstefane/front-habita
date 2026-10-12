@@ -2,11 +2,11 @@
 
 Interface web do sistema de gestão imobiliária Habita.
 
-**(Entrega: 14/09) - AC 1: Tela de login e cadastro de corretores**
+**(Entrega: 13/10) - AC 2: Cadastro de proprietários**
 
 ## Descrição
 
-O front-end é o ponto de contato com o Habita. Nesta AC 1 o administrador cadastra a equipe comercial. O corretor entra no sistema e vê a mensagem de em breve da AC 2.
+O front-end é o ponto de contato com o Habita. Nesta AC 2, administrador e corretor cadastram proprietários. O menu de corretores continua exclusivo do administrador.
 
 ## Tecnologias
 
@@ -17,23 +17,23 @@ O front-end é o ponto de contato com o Habita. Nesta AC 1 o administrador cadas
 - Material UI
 - GraphQL (`graphql-request`)
 
-## Telas da AC 1
+## Telas
 
-| Rota          | Valor                                                                       |
-| ------------- | --------------------------------------------------------------------------- |
-| `/login`      | Entrada no sistema com e-mail e senha; grava o JWT                          |
-| `/`           | Dashboard. Admin vê o atalho de corretores; o corretor vê “Em breve — AC 2” |
-| `/corretores` | Formulário e tabela — **somente o administrador**                           |
+| Rota              | Valor                                                          |
+| ----------------- | -------------------------------------------------------------- |
+| `/login`          | Entrada no sistema com e-mail e senha; grava o JWT             |
+| `/`               | Dashboard com atalho para proprietários (e corretores no admin) |
+| `/proprietarios`  | Formulário e tabela — **administrador e corretor**             |
+| `/corretores`     | Formulário e tabela — **somente o administrador**              |
 
-O menu do administrador tem **Dashboard** e **Corretores**. O menu do corretor tem só **Dashboard**.
+O menu do administrador tem **Dashboard**, **Proprietários** e **Corretores**. O menu do corretor tem **Dashboard** e **Proprietários**.
 
 ## Próximas telas
 
-| Entrega       | Tela          | Valor                                          |
-| ------------- | ------------- | ---------------------------------------------- |
-| AC 2 (13/10)  | Proprietários | Cadastro e listagem - administrador e corretor |
-| AC 3 (08/11)  | Imóveis       | Catálogo de imóveis                            |
-| Final (22/11) | Visitas       | Agenda de visitas                              |
+| Entrega       | Tela    | Valor               |
+| ------------- | ------- | ------------------- |
+| AC 3 (08/11)  | Imóveis | Catálogo de imóveis |
+| Final (22/11) | Visitas | Agenda de visitas   |
 
 ## Como rodar
 

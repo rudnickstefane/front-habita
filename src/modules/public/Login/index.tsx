@@ -73,7 +73,7 @@ export default function Login() {
             Gestão simples para corretores.
           </Typography>
           <Typography className="mt-4 text-white/80 max-w-sm">
-            Acesse o painel da AC 1 para autenticar e cadastrar a equipe comercial.
+            Acesse o painel para autenticar, cadastrar corretores e proprietários.
           </Typography>
         </Box>
         <Typography variant="body2" className="text-white/70">
