@@ -4,7 +4,7 @@ export const LOGIN_MUTATION = gql`
   mutation Login($data: LoginInput!) {
     login(data: $data) {
       token
-      corretor {
+      usuario {
         id
         nome
         email

@@ -10,14 +10,22 @@ import {
 import { useAuthStore } from "@sr/store/useAuthStore";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
+const perfilLabel = {
+  ADMIN: "Administrador",
+  CORRETOR: "Corretor",
+  PROPRIETARIO: "Proprietário",
+} as const;
+
 export default function AppLayout() {
   const navigate = useNavigate();
-  const { corretor, logout } = useAuthStore();
-  const isAdmin = corretor?.perfil === "ADMIN";
+  const { usuario, logout } = useAuthStore();
+  const isAdmin = usuario?.perfil === "ADMIN";
+  const isStaff = isAdmin || usuario?.perfil === "CORRETOR";
 
   const menuItems = [
     { label: "Dashboard", to: "/" },
-    { label: "Proprietários", to: "/proprietarios" },
+    { label: "Imóveis", to: "/imoveis" },
+    ...(isStaff ? [{ label: "Proprietários", to: "/proprietarios" }] : []),
     ...(isAdmin ? [{ label: "Corretores", to: "/corretores" }] : []),
   ];
 
@@ -59,10 +67,10 @@ export default function AppLayout() {
 
         <Divider className="!border-white/10 mb-4" />
         <Typography variant="body2" className="text-white/70 mb-1">
-          {corretor?.nome}
+          {usuario?.nome}
         </Typography>
         <Typography variant="caption" className="text-white/50 mb-3">
-          {isAdmin ? "Administrador" : "Corretor"}
+          {usuario ? perfilLabel[usuario.perfil] : ""}
         </Typography>
         <Button
           variant="outlined"

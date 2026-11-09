@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { LOGIN_MUTATION } from "@sr/graphql/auth";
 import { useBackend } from "@sr/modules/common/hooks/useBackend";
-import { useAuthStore } from "@sr/store/useAuthStore";
+import { useAuthStore, type UsuarioSession } from "@sr/store/useAuthStore";
 import { ClientError } from "graphql-request";
 import { FormEvent, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -17,12 +17,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 type LoginResponse = {
   login: {
     token: string;
-    corretor: {
-      id: number;
-      nome: string;
-      email: string;
-      perfil: "ADMIN" | "CORRETOR";
-    };
+    usuario: UsuarioSession;
   };
 };
 
@@ -49,7 +44,7 @@ export default function Login() {
         data: { email, senha },
       });
 
-      setSession(response.login.token, response.login.corretor);
+      setSession(response.login.token, response.login.usuario);
       navigate("/", { replace: true });
     } catch (requestError) {
       const message =
@@ -70,10 +65,11 @@ export default function Login() {
         </Typography>
         <Box>
           <Typography variant="h3" fontWeight={600} className="max-w-md">
-            Gestão simples para corretores.
+            Gestão simples para a imobiliária.
           </Typography>
           <Typography className="mt-4 text-white/80 max-w-sm">
-            Acesse o painel para autenticar, cadastrar corretores e proprietários.
+            Administrador, corretor e proprietário acessam o mesmo portal, cada um
+            com o seu papel.
           </Typography>
         </Box>
         <Typography variant="body2" className="text-white/70">
@@ -90,7 +86,7 @@ export default function Login() {
             Entrar no Habita
           </Typography>
           <Typography color="text.secondary" className="mb-6">
-            Use o e-mail e a senha do corretor.
+            Use o e-mail e a senha do administrador, corretor ou proprietário.
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} className="flex flex-col gap-4">

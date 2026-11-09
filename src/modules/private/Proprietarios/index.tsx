@@ -78,6 +78,7 @@ export default function Proprietarios() {
   const queryClient = useQueryClient();
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [telefone, setTelefone] = useState("");
   const [documento, setDocumento] = useState("");
   const [formError, setFormError] = useState("");
@@ -92,6 +93,7 @@ export default function Proprietarios() {
     mutationFn: (data: {
       nome: string;
       email: string;
+      senha: string;
       telefone: string;
       documento: string;
     }) =>
@@ -102,10 +104,11 @@ export default function Proprietarios() {
       queryClient.invalidateQueries({ queryKey: ["proprietarios"] });
       setNome("");
       setEmail("");
+      setSenha("");
       setTelefone("");
       setDocumento("");
       setFormError("");
-      setFormSuccess("Proprietário cadastrado com sucesso.");
+      setFormSuccess("Proprietário cadastrado. Ele já pode entrar no portal com o e-mail e a senha.");
     },
     onError: (error) => {
       setFormSuccess("");
@@ -115,7 +118,7 @@ export default function Proprietarios() {
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    createMutation.mutate({ nome, email, telefone, documento });
+    createMutation.mutate({ nome, email, senha, telefone, documento });
   }
 
   const proprietarios = proprietariosQuery.data?.proprietarios ?? [];
@@ -127,7 +130,7 @@ export default function Proprietarios() {
           Proprietários
         </Typography>
         <Typography color="text.secondary">
-          Cadastre os donos dos imóveis. Disponível para administrador e corretor.
+          Cadastre os donos dos imóveis e defina a senha de acesso ao portal.
         </Typography>
       </Box>
 
@@ -152,6 +155,14 @@ export default function Proprietarios() {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
+          />
+          <TextField
+            label="Senha de acesso ao portal"
+            type="password"
+            value={senha}
+            onChange={(event) => setSenha(event.target.value)}
+            required
+            helperText="O proprietário usa este e-mail e senha para solicitar imóveis."
           />
           <TextField
             label="Telefone"

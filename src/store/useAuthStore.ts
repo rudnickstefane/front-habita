@@ -1,36 +1,36 @@
 import { storage } from "@sr/common/storage";
 import { create } from "zustand";
 
-export type PerfilCorretor = "ADMIN" | "CORRETOR";
+export type PerfilAcesso = "ADMIN" | "CORRETOR" | "PROPRIETARIO";
 
-export type CorretorSession = {
+export type UsuarioSession = {
   id: number;
   nome: string;
   email: string;
-  perfil: PerfilCorretor;
+  perfil: PerfilAcesso;
 };
 
 type AuthState = {
   token: string | null;
-  corretor: CorretorSession | null;
-  setSession: (token: string, corretor: CorretorSession) => void;
+  usuario: UsuarioSession | null;
+  setSession: (token: string, usuario: UsuarioSession) => void;
   logout: () => void;
 };
 
 const storedToken = storage.get<string>("token");
-const storedCorretor = storage.get<CorretorSession>("corretor");
+const storedUsuario = storage.get<UsuarioSession>("usuario");
 
 export const useAuthStore = create<AuthState>((set) => ({
   token: storedToken,
-  corretor: storedCorretor,
-  setSession: (token, corretor) => {
+  usuario: storedUsuario,
+  setSession: (token, usuario) => {
     storage.set("token", token);
-    storage.set("corretor", corretor);
-    set({ token, corretor });
+    storage.set("usuario", usuario);
+    set({ token, usuario });
   },
   logout: () => {
     storage.remove("token");
-    storage.remove("corretor");
-    set({ token: null, corretor: null });
+    storage.remove("usuario");
+    set({ token: null, usuario: null });
   },
 }));
